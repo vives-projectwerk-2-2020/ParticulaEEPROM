@@ -9,22 +9,31 @@ int main(void) {
     Mamary::EEPROM eeprom(&i2cbus);
     char buffer[32] = {0};
     eeprom.read(buffer, 32, 0);
-    printf("Reading for eeprom\n");
+    printf("\r\nReading for eeprom #1\r\n");
     for(int i = 0; i<32; i++){
         printf("0x%x ", buffer[i]);
     }
-    printf("\n");
+    printf("\r\n");
 
-    printf("witing to eeprom\n");
-    char data[4] = {1, 2, 3, 4};
-    eeprom.write(data, 4, 2);
+    printf("Witing to eeprom\r\n");
+    char data[4] = {0, 0, 0, 0};
+    eeprom.write(data, 4, 6);
+
+    wait_ms(10); //write cycle delay
 
     eeprom.read(buffer, 32, 0);
-    printf("Reading for eeprom\n");
+    printf("Reading for eeprom #2\r\n");
     for(int i = 0; i<32; i++){
         printf("0x%x ", buffer[i]);
     }
-    printf("\n");
+    printf("\r\n");
+
+    eeprom.read(buffer, 32, 0);
+    printf("Reading for eeprom #3\r\n");
+    for(int i = 0; i<32; i++){
+        printf("0x%x ", buffer[i]);
+    }
+    printf("\r\n");
 
     while (true) {
         ThisThread::sleep_for(30000);
