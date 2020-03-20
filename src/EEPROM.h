@@ -10,5 +10,6 @@ namespace Mamary{
         private:
             const char i2cAddress = 0x50 << 1;    // The only avalible I2C Address for our eeprom
             I2C * i2cBus;
+            void writePage(char buffer[], unsigned int length, unsigned int offset);
     };
 };

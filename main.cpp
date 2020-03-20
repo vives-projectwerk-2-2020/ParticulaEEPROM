@@ -4,31 +4,35 @@
 Serial pc(USBTX, USBRX);
 
 int main(void) {
+    unsigned int lengthtest = 40;
     pc.printf("\r\n\r\n[Particula] Loading Firmware ...");
     I2C i2cbus(D14,D15);
     Mamary::EEPROM eeprom(&i2cbus);
-    char buffer[32] = {0};
-    eeprom.read(buffer, 32, 0);
+    char buffer[lengthtest] = {0};
+    eeprom.read(buffer, lengthtest, 0);
     printf("\r\nReading for eeprom #1\r\n");
-    for(int i = 0; i<32; i++){
+    for(int i = 0; i<lengthtest; i++){
         printf("0x%x ", buffer[i]);
     }
     printf("\r\n");
 
     printf("Witing to eeprom\r\n");
-    char data[4] = {0, 0, 0, 0};
-    eeprom.write(data, 4, 6);
+    char data[lengthtest];
+    for(unsigned int i=0; i<lengthtest; i++){
+        data[i] = 0x0;
+    }
+    eeprom.write(data, lengthtest, 15);
 
-    eeprom.read(buffer, 32, 0);
+    eeprom.read(buffer, lengthtest, 0);
     printf("Reading for eeprom #2\r\n");
-    for(int i = 0; i<32; i++){
+    for(int i = 0; i<lengthtest; i++){
         printf("0x%x ", buffer[i]);
     }
     printf("\r\n");
 
-    eeprom.read(buffer, 32, 0);
+    eeprom.read(buffer, lengthtest, 0);
     printf("Reading for eeprom #3\r\n");
-    for(int i = 0; i<32; i++){
+    for(int i = 0; i<lengthtest; i++){
         printf("0x%x ", buffer[i]);
     }
     printf("\r\n");
