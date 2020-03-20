@@ -19,8 +19,6 @@ int main(void) {
     char data[4] = {0, 0, 0, 0};
     eeprom.write(data, 4, 6);
 
-    wait_ms(10); //write cycle delay
-
     eeprom.read(buffer, 32, 0);
     printf("Reading for eeprom #2\r\n");
     for(int i = 0; i<32; i++){

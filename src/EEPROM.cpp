@@ -20,6 +20,7 @@ namespace Mamary{
             data[i+2] = buffer[i];
         }
         i2cBus->write(i2cAddress, data, length+2);
+        wait_ms(10); //write cycle delay
         // i2cBus->write(i2cAddress, (char*)&offset , 2);
         // i2cBus->write(i2cAddress, buffer , length);
         // for(unsigned int i = 0; i < length; i++){
