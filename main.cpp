@@ -17,7 +17,7 @@ int main(void) {
 
     printf("witing to eeprom\n");
     char data[4] = {1, 2, 3, 4};
-    eeprom.write(buffer, 4, 2);
+    eeprom.write(data, 4, 2);
 
     eeprom.read(buffer, 32, 0);
     printf("Reading for eeprom\n");
