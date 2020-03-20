@@ -3,8 +3,8 @@
 
 
 namespace Mamary{
-    EEPROM::EEPROM(I2C &i2c_obj){
-        i2cbus(&i2c_obj);
+    EEPROM::EEPROM(I2C * i2c_obj){
+        //i2cbus(&i2c_obj);
     }
 
     void EEPROM::readData(char buffer, unsigned int length, unsigned int offset){
